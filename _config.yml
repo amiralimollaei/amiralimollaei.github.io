@@ -16,7 +16,7 @@ timezone: Asia/Tehran
 
 title: 'AmirAli Mollaei''s blog' # the main title
 
-tagline: self-tought programmer and AI researcher # it will display as the subtitle
+tagline: self-taught programmer and AI researcher # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   Join me with the journey of programming and AI research and the challenges faced along the way.
