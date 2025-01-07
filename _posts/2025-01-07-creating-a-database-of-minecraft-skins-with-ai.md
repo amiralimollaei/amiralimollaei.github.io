@@ -17,7 +17,8 @@ If you upload a Minecraft skin to chatgpt and ask for a description of it, it pr
 > This is because chatgpt can't understand the 3D nature of Minecraft skins and it's pixel art nature, It is seen as a very blury image with a black background.
 
 But if you render the minecraft skin, then the AI can understand and describe it significantly better, because now it's a 3D object and not a blury mess.
-the rendering I used a python library called `minepi` and modified the code to get better lighting and better performance.
+
+For the rendering I used a python library called `minepi` and modified the code to get better lighting and better performance.
 
 ## Problem 2: Formulated Descriptions Ruin Creativity
 Suppose we have a minecraft skin of Albert Einstein, would you describe Albert Einstein as being an old man with gray hair and wearing a lab coat or do you simply say it's Albert Einstein? 
