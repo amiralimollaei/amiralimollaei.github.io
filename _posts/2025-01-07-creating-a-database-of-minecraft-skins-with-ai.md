@@ -3,10 +3,10 @@ title: Creating a Dataset of Minecraft Skins Using AI
 description: >-
   I passed 197k Minecraft skins to a VLM to create one of the most accurate datasets of labelled minecraft skins available
 author: amiralimollaei
-date: 2024-12-26 19:40:00 +0330
+date: 2025-01-07 18:00:00 +0330
 categories: []
 tags: []
-pin: true
+pin: false
 # media_subpath:
 ---
 
