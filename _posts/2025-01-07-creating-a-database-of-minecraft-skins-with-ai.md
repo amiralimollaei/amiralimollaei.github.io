@@ -10,7 +10,7 @@ pin: true
 # media_subpath:
 ---
 
-I passed 197k minecraft skins to a VLM to describe them in varying levels of detail, this dataset has various AI applications that I'll mention layer.
+I passed 197k minecraft skins to a VLM (Vision Language Model) to describe them in varying levels of detail, this dataset has various AI applications that I'll mention layer.
 
 ## Problem 1: AI Does Not Understand Skin Files
 If you upload a Minecraft skin to chatgpt and ask for a description of it, it probably wouldn't do it very well.
