@@ -40,7 +40,7 @@ Examples:
 - "Batman with a mask"
 ```
 
-But there's a problem, if all of the descriptions follow the same formula, that means if we want to use an AI that is trained on this dataset, we have to follow that too, otherwise the results wouldn't be great.
+But there's a problem, if all the descriptions follow the same formula, that means to use an AI trained on this dataset, we have to follow that formula too, otherwise the results wouldn't be great.
 
 For this I passed the descriptions again to another LLM to paraphrase them using the following prompt:
 ```
@@ -62,11 +62,11 @@ ONLY OUTPUT A JSON containing 5 sentences, ordered from no perceptual detail (a 
 ## Problem 3: The Huge Amount Of Computation
 To process 197 thousand images is not an easy task, it requires a LOT of computation, something that I Just couldn't do on my PC.
 
-So, I used a cloud computing service named `Deepinfra`, this website let's you send 200 concurrent requirests to their APIs and was able to use their free trial to do the entire processing on their servers using `Llama3.2-Vision-90B` and `Llama3.3-70B` for a fraction of the time it would take on my machine, the code I wrote achived this in 3 hours, doing 128 concurrent requests with multithreading.
+So, I used a cloud computing service named `Deepinfra`, this website let's you send 200 concurrent requests to their APIs and was able to use their free trial to do the entire processing on their servers using `Llama3.2-Vision-90B` and `Llama3.3-70B` for a fraction of the time it would take on my machine, the code I wrote achived this in 3 hours, doing 128 concurrent requests with multithreading.
 
 ## The Dataset
 Below is some samples from the dataset,
-It's Accutane around %90 of the time, and in my opinion this is one of the most accurate datasets in this field.
+It's accurate around %90 of the time, and in my opinion this is one of the most accurate datasets in this field.
 
 ![Sample 1](/assets/posts/1/sample1.png)
 ![Sample 2](/assets/posts/1/sample2.png)
