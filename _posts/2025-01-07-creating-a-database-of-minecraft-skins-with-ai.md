@@ -62,7 +62,7 @@ ONLY OUTPUT A JSON containing 5 sentences, ordered from no perceptual detail (a 
 ## Problem 3: The Huge Amount Of Computation
 To process 197 thousand images is not an easy task, it requires a LOT of computation, something that I Just couldn't do on my PC.
 
-So, I used [Deepinfra](https://deepinfra.com/) a cloud computing service that allows 200 concurrent requests to their APIs, and was able to use their free trial to do the entire processing on their servers using `Llama3.2-90B-Vision-Instruct` and `Llama3.3-70B-Instruct`, the code I wrote achived this in 3 hours, with 128 concurrent requests maintained at all time.
+So, I used [Deepinfra](https://deepinfra.com/) a cloud computing service that allows 200 concurrent requests to their APIs, and was able to use their APIs to do the entire processing on their servers using `Llama3.2-90B-Vision-Instruct` and `Llama3.3-70B-Instruct`, the code I wrote achived this in 3 hours, with 128 concurrent requests maintained at all time.
 
 ## The Dataset
 Below is some samples from the dataset,
