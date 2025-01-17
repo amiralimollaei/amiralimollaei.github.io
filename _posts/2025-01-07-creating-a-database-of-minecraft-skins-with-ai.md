@@ -56,7 +56,7 @@ The generated text should be fluent / grammatically correct (Fluency).
 
 ONLY OUTPUT A JSON containing 5 sentences, ordered from no perceptual detail (a few words) to high detail (full paragraph), every iteration increases the perceptual detail, with the following format:
 
-{"paraphrases": ["...", ... ]}""
+{"paraphrases": ["...", ... ]}
 ```
 
 ## Problem 3: The Huge Amount Of Computation
