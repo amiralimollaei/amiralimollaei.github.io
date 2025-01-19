@@ -75,5 +75,5 @@ It's accurate around %90 of the time, and in my opinion this is one of the most 
 
 ---
 
-### What can this dataset be used for?
+## What can this be used for?
 This dataset can be used for training AI models that can generate or modify minecraft skins based on a prompt, similar to image generator websites, or can be used to train AI models that categorise minecraft skins (e.g. detecting inappropriate or harmful stuff) or finding similaritis/variants of existing minecraft skins, or creating AI models that can describe any given Minecraft skin for a fraction of the computation that was previously possible.
