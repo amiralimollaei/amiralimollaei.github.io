@@ -262,7 +262,7 @@ class RetrievalAgent:
 
 So, what does all this inline commands, agents, and tool calling have to do with a chatbot that loves pancakes? **Everything**. The goal was never just to build a functional bot, but to create one with **personality**.
 
-The concepts I've explained here are the building blocks for that character. Inline commands give Pixi its quick, reactive nature, while tools and agents provide the opportunity to expand it's capabilities and help users in many meaningful ways.
+The concepts I've explained here are the building blocks for that character. Inline commands give Pixi its quick, reactive nature, while tools and agents provide the opportunity to expand its capabilities and help users in many meaningful ways.
 
 This architecture is about more than just executing tasks; it’s about breathing life into lines of code, enabling a bot to express a thought, perform an action, and then share the result in a way that feels natural and dynamic. It turns a simple request-response model into a genuine conversation.
 
