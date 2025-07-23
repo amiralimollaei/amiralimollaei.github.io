@@ -26,16 +26,15 @@ description: >- # used by seo meta and the atom feed
 url: "https://amiralimollaei.github.io"
 
 github:
-  username: amiralimollaei # change to your GitHub username
+  username: amiralimollaei
 
 social:
-  # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: AmirAli Mollaei
-  email: me.amiralimollaei@gmail.com # change to your email address
+  email: me.amiralimollaei@gmail.com
   links:
     # The first element serves as the copyright owner's link
-    - https://github.com/amiralimollaei # change to your GitHub homepage
+    - https://github.com/amiralimollaei
 
 # Site Verification Settings
 webmaster_verifications:
@@ -102,7 +101,7 @@ toc: true
 
 comments:
   # Global switch for the post-comment system. Keeping it empty means disabled.
-  provider: # [disqus | utterances | giscus]
+  provider: giscus # [disqus | utterances | giscus]
   # The provider options are as follows:
   disqus:
     shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
@@ -112,10 +111,10 @@ comments:
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
-    repo: # <gh-username>/<repo>
-    repo_id:
-    category:
-    category_id:
+    repo: amiralimollaei/amiralimollaei.github.io # <gh-username>/<repo>
+    repo_id: R_kgDONij0Vg
+    category: Comments
+    category_id: DIC_kwDONij0Vs4CtUC7
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
