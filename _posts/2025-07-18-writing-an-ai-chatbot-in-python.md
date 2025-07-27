@@ -15,7 +15,7 @@ Sample interactions with the chatbot in Discord (for the rest of the article, I 
 
 | Pancakes | World Domination | Cat Lover |
 | :----------- |:-----------| :-----------|
-| ![Content Cell](/Screenshot_20250703-004518_Discord.jpg)  | ![Content Cell](/Screenshot_20250626-010527_Discord.jpg) | ![Content Cell](/Screenshot_Discord.png) |
+| ![Content Cell](Screenshot_20250703-004518_Discord.jpg)  | ![Content Cell](Screenshot_20250626-010527_Discord.jpg) | ![Content Cell](Screenshot_Discord.png) |
 
 As you can see, this isn't exactly how ChatGPT answers your questions. Furthermore, you can see that the bot can do quite a lot of stuff that ChatGPT cannot, like sending GIFs, adding reactions, and sending multiple messages at once. To understand how this works, we first need to understand how *tool calling* can be used to integrate chatbots into almost any application.
 
@@ -65,40 +65,49 @@ Below is a more complete comparison of tool calls and commands:
 The implementation is quite simple. The following code processes the model's output stream for inline commands:
 
 ```python
-# consumes commands and runs them automatically
-def stream_commands(self, stream: Iterator):
+def execute_command(self, command_str: str):
+    """parse and execute a command"""
+
+    command_content = command_str[1:-1]
+    seperator_idx = None
+    if ":" in command_str:
+        seperator_idx = command_content.index(":")
+    
+    if seperator_idx:
+        command_name = command_content[:seperator_idx].strip()
+        command_data = command_content[seperator_idx+1:].strip()
+    else:
+        command_name = command_content
+        command_data = None
+
+    command = self.commands.get(command_name.lower())
+    if command is None:
+        raise NotImplementedError(f"The command `{command_name}` is not implemented.")
+
+    return command(command_data)
+
+def stream_commands(self, stream: Iterator | Generator):
+    """consumes commands and runs them automatically"""
+
+    # `inside_command` counts one up for "[" and one down for "]"
+    # command is finished when this value reaches 0 after a "]" character
     inside_command = 0
     command_str = ""
     for char in stream:
-        result = None
-        
         if char == "[":
             inside_command += 1
-        if inside_command != 0:
-            command_str += char
-        else:
-            result = char
+
+        if inside_command == 0: # if we are not inside a command
+            yield char # yields the character unchanged
+            continue
+        
+        command_str += char # consumes the character as it is part of the command
+
         if char == "]":
             inside_command -= 1
             if inside_command == 0:
-                _command_str = command_str[1:-1]
-                seperator_idx = None
-                if ":" in command_str:
-                    seperator_idx = _command_str.index(":")
-                command_data = None
-                if seperator_idx:
-                    command_name = _command_str[:seperator_idx].strip()
-                    command_data = _command_str[seperator_idx+1:].strip()
-                else:
-                    command_name = _command_str
-                command = self.commands.get(command_name.lower())
-                if command is not None:
-                    command(command_data)
-                else:
-                    raise NotImplementedError(f"The command `{command_name}` is not implemented.")
+                self.execute_command(command_str=command_str)
                 command_str = ""
-        if result:
-            yield result
 ```
 
 It works by finding parts of the model's output that follow the format of `[<name>]` or `[<name>: <value>]` and running the command that matches the `<name>`, passing it the `<value>` if present. Commands can be used multiple times, and since they have no output, they can run without additional API requests and be executed simultaneously while the model is generating more text and commands.
@@ -122,10 +131,13 @@ async def init_database_tool(self, database_name: str):
         logging.warning("tried to initialize a database tool, but tool calls are disabled")
         return
     database_api = await DirectoryDatabase.from_directory(database_name)
+
     async def get_entry_as_str(entry_id: int):
         return json.dumps(asdict(await database_api.get_entry(entry_id)), ensure_ascii=False)
+
     async def search_database(instance: AsyncChatbotInstance, keyword: str):
         return [asdict(match) for match in await database_api.search(keyword)]
+
     self.register_tool(
         name=f"search_{database_name}_database",
         func=search_database,
@@ -142,6 +154,7 @@ async def init_database_tool(self, database_name: str):
         ),
         description=f"Searches the {database_name} database based on a keyword and returns entry metadata. You may use this function multiple times to find the specific information you're looking for."
     )
+
     async def query_database(instance: AsyncChatbotInstance, query: str, ids: str):
         if ids is None:
             return "no result, no ids specified"
@@ -149,6 +162,7 @@ async def init_database_tool(self, database_name: str):
             model=self.helper_model,
             context=await asyncio.gather(*(get_entry_as_str(int(entry_id.strip())) for entry_id in ids.split(",")))
         ).retrieve(query)
+
     self.register_tool(
         name=f"query_{database_name}_database",
         func=query_database,
